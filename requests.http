@@ -1,0 +1,10 @@
+POST http://localhost:3101
+Content-Type: application/json
+
+{
+  "url": "https://youtube.com"
+}
+
+###
+
+DELETE http://localhost:3000/599R
