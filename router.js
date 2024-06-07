@@ -1,12 +1,16 @@
 import { Router } from 'express'
 import { Url } from './schemas/Url.js'
 import { generateRandomId } from './services/generateRandomId.js'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export const router = Router()
 
 router.get('/', (req, res) => {
-  res.send('exmaple jskasa')
-  // res.redirect(process.env.HOME_URL)
+  res.redirect(process.env.HOME_URL)
 })
 
 router.get('/:id', (req, res) => {
@@ -17,8 +21,7 @@ router.get('/:id', (req, res) => {
       res.redirect(savedId.baseUrl)
     })
     .catch(_ => {
-      res.status(404).send({ error: 'id not found' })
-      // change this to an html file
+      res.status(404).sendFile(join(__dirname, '/404/404.html'))
     })
 })
 
